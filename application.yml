@@ -1,3 +1,8 @@
+server:
+  servlet:
+     context-path: /shinyproxy
+  contextPath: /shinyproxy
+  useForwardHeaders: true
 proxy:
   port: 8080
   authentication: simple
@@ -21,7 +26,11 @@ proxy:
   - id: 06_tabsets
     container-cmd: ["R", "-e", "shinyproxy::run_06_tabsets()"]
     container-image: openanalytics/shinyproxy-demo
-
+    access-groups: cct-datascience
+  - id: 06_tabsets2
+    container-cmd: ["R", "-e", "shinyproxy::run_06_tabsets()"]
+    container-image: openanalytics/shinyproxy-demo
+    access-groups: cct-datascience
 logging:
   file:
     shinyproxy.log
